@@ -1,4 +1,4 @@
-# General Bikeshare Feed Specification (GBFS)
+# General Mobility Feed Specification (GMFS)
 This document explains the types of files and data that comprise the General Bikeshare Feed Specification (GBFS) and defines the fields used in all of those files.
 
 ## Table of Contents
@@ -8,7 +8,7 @@ This document explains the types of files and data that comprise the General Bik
 * [Files](#files)
 * [File Requirements](#file-requirements)
 * [Field Definitions](#field-definitions)
-    * [gbfs.json](#gbfsjson)
+    * [gmfs.json](#gmfsjson)
     * [system_information.json](#system_informationjson)
     * [station_information.json](#station_informationjson)
     * [station_status.json](#station_statusjson)
@@ -21,10 +21,7 @@ This document explains the types of files and data that comprise the General Bik
 * [Possible Future Enhancements](#possible-future-enhancements)
 
 ## Revision History
-* 11/05/2015 - GBFS V1.0 Adopted by NABSA board
-* 08/2015 - Latest changes incorporated and name change to GBFS (comments from Motivate, 8D, others)
-* 06/2015 - Proposed refinements (prepared by Jesse Chan-Norris on behalf of Motivate)
-* 01/2015 - NABSA Draft (prepared by Mitch Vars)
+* 10/12/2018 First Draft based on GBFS
 
 ## Introduction
 This specification has been designed with the following concepts in mind:
@@ -39,7 +36,7 @@ This specification defines the following files along with their associated conte
 
 File Name                   | Required      | Defines
 --------------------------- | ------------  | ----------
-gbfs.json                   | Optional      | Auto-discovery file that links to all of the other files published by the system. This file is optional, but highly recommended.
+gmfs.json                   | Optional      | Auto-discovery file that links to all of the other files published by the system. This file is optional, but highly recommended.
 system_information.json     | Yes           | Describes the system including System operator, System location, year implemented, URLs, contact info, time zone
 station_information.json    | Yes           | Mostly static list of all stations, their capacities and locations
 station_status.json         | Yes           | Number of available bikes and docks at each station and station availability
@@ -49,6 +46,8 @@ system_calendar.json        | Optional      | Describes the days of operation fo
 system_regions.json         | Optional      | Describes the regions the system is broken up into
 system_pricing_plans.json   | Optional      | Describes the system pricing
 system_alerts.json          | Optional      | Describes current system alerts
+*report_notifications.json  | Yes            | Describes the notification/reports received on problems with the vehicles.
+*report_maintenance.json    | Yes            | Maintenance report of the vehicles.
 
 ## File Requirements
 * All files should be valid JSON
@@ -64,7 +63,7 @@ system_alerts.json          | Optional      | Describes current system alerts
     * This specification supports auto-discovery
     * The location of the auto-discovery file will be provided in the HTML <head> area of the bikeshare landing page hosted at the URL specified in the url field of the system_infomation.json file
     * This is referenced via a _link_ tag with the following format:
-      * `<link rel="gbfs" type="application/json" href="https://www.example.com/data/gbfs.json" />`
+      * `<link rel="gmfs" type="application/json" href="https://www.example.com/data/gmfs.json" />`
     * Reference:
       * https://developers.facebook.com/docs/sharing/best-practices#tags
       * https://dev.twitter.com/cards/markup
@@ -110,7 +109,7 @@ Example:
 }
 ```
 
-### gbfs.json
+### gmfs.json
 The following fields are all attributes within the main "data" object for this feed.
 
 Field Name              | Required    | Defines
@@ -131,11 +130,11 @@ Example:
       "feeds": [
         {
           "name": "system_information",
-          "url": "https://www.example.com/gbfs/en/system_information"
+          "url": "https://www.example.com/gmfs/en/system_information"
         },
         {
           "name": "station_information",
-          "url": "https://www.example.com/gbfs/en/station_information"
+          "url": "https://www.example.com/gmfs/en/station_information"
         }
       ]
     },
@@ -143,11 +142,11 @@ Example:
       "feeds": [
         {
           "name": "system_information",
-          "url": "https://www.example.com/gbfs/fr/system_information"
+          "url": "https://www.example.com/gmfs/fr/system_information"
         },
         {
           "name": "station_information",
-          "url": "https://www.example.com/gbfs/fr/station_information"
+          "url": "https://www.example.com/gmfs/fr/station_information"
         }
       ]
     }
@@ -171,7 +170,7 @@ start_date        | Optional  | String in the form YYYY-MM-DD representing the d
 phone_number      | Optional  | A single voice telephone number for the specified system. This field is a string value that presents the telephone number as typical for the system's service area. It can and should contain punctuation marks to group the digits of the number. Dialable text (for example, Capital Bikeshare’s  "877-430-BIKE") is permitted, but the field must not contain any other descriptive text
 email             | Optional  | A single contact email address for customers to address questions about the system
 timezone          | Yes       | The time zone where the system is located. Time zone names never contain the space character but may contain an underscore. Please refer to the "TZ" value in https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for a list of valid values
-license_url       | Optional  | A fully qualified URL of a page that defines the license terms for the GBFS data for this system, as well as any other license terms the system would like to define (including the use of corporate trademarks, etc)
+license_url       | Optional  | A fully qualified URL of a page that defines the license terms for the GMFS data for this system, as well as any other license terms the system would like to define (including the use of corporate trademarks, etc)
 
 
 ### station_information.json
