@@ -1,5 +1,5 @@
 # GMFS+ | General Mobility Share Feed Specification Plus
-This is a proposal based on GBFS+ to extend the principles of GBFS to all mobility solutions (bikes, cars, station-based, free floating,...).
+This is a proposal based on GBFS+ to extend the principles of GMFS+ to all mobility solutions (bikes, cars, station-based, free floating,...).
 
 ## Preface
 ...:
